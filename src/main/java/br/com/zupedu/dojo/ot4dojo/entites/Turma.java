@@ -1,5 +1,6 @@
 package br.com.zupedu.dojo.ot4dojo.entites;
 
+import br.com.zupedu.dojo.ot4dojo.dtos.NovaTurmaResponse;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.zupedu.dojo.ot4dojo.dtos.NovaTurmaRequest;
@@ -58,6 +59,9 @@ public class Turma {
 	public String toString() {
 		return "Turma [id=" + id + ", nome=" + nome + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + "]";
 	}
-    
-    
+
+
+    public NovaTurmaResponse toResposta() {
+        return new NovaTurmaResponse();
+    }
 }

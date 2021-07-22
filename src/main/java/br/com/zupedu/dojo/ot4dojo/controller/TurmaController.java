@@ -19,7 +19,7 @@ public class TurmaController {
 	@Autowired
 	TurmaRepository turmaRepository;
 	
-    @PostMapping("/turma")
+    @PostMapping("/turmas")
     public String save(@RequestBody @Valid NovaTurmaRequest novaTurmaRequest){
     	
         Turma turma = novaTurmaRequest.toModel();
@@ -27,6 +27,6 @@ public class TurmaController {
         turmaRepository.save(turma);
         
         
-        return turma.toString();
+        return ResponseEntity.created().body(turma.toResposta());
     }
 }
