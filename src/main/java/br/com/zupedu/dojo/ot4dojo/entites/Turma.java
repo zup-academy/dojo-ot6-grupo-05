@@ -23,14 +23,14 @@ public class Turma {
     private String nome;
 
     @FutureOrPresent
-    private LocalDate dataInicio;
+    private LocalDate iniciaEm;
 
-    private LocalDate dataFim;
+    private LocalDate terminaEm;
 
     public Turma(String nome, LocalDate dataInicio, LocalDate dataFim) {
         this.nome = nome;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.iniciaEm = dataInicio;
+        this.terminaEm = dataFim;
     }
 
     @Deprecated
@@ -39,29 +39,23 @@ public class Turma {
 
     public Turma(NovaTurmaRequest novaTurmaRequest) {
 		this.nome = novaTurmaRequest.getNome();
-		this.dataInicio = novaTurmaRequest.getIniciaEm();
-		this.dataFim = novaTurmaRequest.getTerminaEm();
+		this.iniciaEm = novaTurmaRequest.getIniciaEm();
+		this.terminaEm = novaTurmaRequest.getTerminaEm();
     }
 
 	public String getNome() {
         return nome;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
+    public LocalDate getIniciaEm() {
+        return iniciaEm;
     }
 
-    public LocalDate getDataFim() {
-        return dataFim;
+    public LocalDate getTerminaEm() {
+        return terminaEm;
     }
-
-	@Override
-	public String toString() {
-		return "Turma [id=" + id + ", nome=" + nome + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + "]";
-	}
-
 
     public NovaTurmaResponse toResposta() {
-        return new NovaTurmaResponse();
+        return new NovaTurmaResponse(this.id, this.nome, this.iniciaEm, this.terminaEm);
     }
 }

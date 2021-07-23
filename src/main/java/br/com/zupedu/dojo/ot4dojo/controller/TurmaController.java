@@ -1,10 +1,12 @@
 package br.com.zupedu.dojo.ot4dojo.controller;
 
 import br.com.zupedu.dojo.ot4dojo.dtos.NovaTurmaRequest;
+import br.com.zupedu.dojo.ot4dojo.dtos.NovaTurmaResponse;
 import br.com.zupedu.dojo.ot4dojo.entites.Turma;
 import br.com.zupedu.dojo.ot4dojo.repositories.TurmaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +22,10 @@ public class TurmaController {
 	TurmaRepository turmaRepository;
 	
     @PostMapping("/turmas")
-    public String save(@RequestBody @Valid NovaTurmaRequest novaTurmaRequest){
-    	
+    public ResponseEntity<NovaTurmaResponse> save(@RequestBody @Valid NovaTurmaRequest novaTurmaRequest, ){
         Turma turma = novaTurmaRequest.toModel();
-
         turmaRepository.save(turma);
         
-        
-        return ResponseEntity.created().body(turma.toResposta());
+        return ResponseEntity.status(HttpStatus.CREATED).body(turma.toResposta());
     }
 }
