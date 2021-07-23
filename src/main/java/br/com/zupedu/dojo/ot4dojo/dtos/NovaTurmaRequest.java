@@ -10,16 +10,32 @@ public class NovaTurmaRequest {
 
     @NotBlank @Unique(clazz = Turma.class, fieldName = "nome")
     private String nome;
-    private LocalDate dataInicio;
-    private LocalDate dataFim;
+    private LocalDate iniciaEm;
+    private LocalDate terminaEm;
 
-    public NovaTurmaRequest(String nome, LocalDate dataInicio, LocalDate dataFim) {
+    public NovaTurmaRequest(String nome, LocalDate iniciaEm, LocalDate terminaEm) {
         this.nome = nome;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+        this.iniciaEm = iniciaEm;
+        this.terminaEm = terminaEm;
     }
 
-    public Turma converter() {
-        Turma turma = new Turma()
-    }
+	public Turma toModel() {
+		
+		return new Turma(this);
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public LocalDate getIniciaEm() {
+		return iniciaEm;
+	}
+
+	public LocalDate getTerminaEm() {
+		return terminaEm;
+	}
+
+	
+   
 }

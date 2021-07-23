@@ -2,6 +2,8 @@ package br.com.zupedu.dojo.ot4dojo.entites;
 
 import org.hibernate.validator.constraints.Length;
 
+import br.com.zupedu.dojo.ot4dojo.dtos.NovaTurmaRequest;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +36,13 @@ public class Turma {
     public Turma(){
     }
 
-    public String getNome() {
+    public Turma(NovaTurmaRequest novaTurmaRequest) {
+		this.nome = novaTurmaRequest.getNome();
+		this.dataInicio = novaTurmaRequest.getIniciaEm();
+		this.dataFim = novaTurmaRequest.getTerminaEm();
+    }
+
+	public String getNome() {
         return nome;
     }
 
@@ -45,4 +53,11 @@ public class Turma {
     public LocalDate getDataFim() {
         return dataFim;
     }
+
+	@Override
+	public String toString() {
+		return "Turma [id=" + id + ", nome=" + nome + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + "]";
+	}
+    
+    
 }
